@@ -1,0 +1,3 @@
+Ici sera liste quelques liens que j'aurai trouvé interressant et pourrait peut être me servir dans un futur
+
+Le lien Git Hub de Jeremy pour la verification en deux étapes de Laravel marche sur du Laravel Breeze version 10 prise en charge : https://github.com/jeremykenedy/laravel2step?tab=readme-ov-file
