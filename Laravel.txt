@@ -1,8 +1,42 @@
 Ici sera liste quelques liens que j'aurai trouvé interressant et pourrait peut être me servir dans un futur
 
+**| Jeremy double auth |**
 Le lien Git Hub de Jeremy pour la verification en deux étapes de Laravel marche sur du Laravel Breeze version 10 prise en charge : https://github.com/jeremykenedy/laravel2step?tab=readme-ov-file
 
 
 Pour la gestion de la documentation de son API **Scramble** me parait ideal meme si il en existe plusieurs autres comme Swagger: Scribe etc ..
 
+**| API doc Scramble |**
+
 Le lien de scramble : https://scramble.dedoc.co
+
+**| laravel-crud-generator |**
+
+Pour installer le package en mode développement :
+
+*composer require ibex/crud-generator --dev*
+
+Publier le fichier de configuration :
+
+*php artisan vendor:publish --tag=crud*
+On cree la base de donne avec les tables
+**Utilisation**
+php artisan make:crud noms
+
+sa va generer
+*un model exemple [Nom.php]
+*un controller [NomController.php]
+et dans Views un complet nom avec tous les fichiers blade que sont
+*create.blade.php
+*edit.blade.php
+*form.blade.php
+*index.blade.php
+*show.blade.php
+
+Rendez-vous dans le fichier de route « web.php » pour déclarer la route d’accès au CRUD
+use App\Http\Controllers\PostController;
+
+Route::resource('posts', PostController::class);
+
+Article lu Ici: https://captainpackage.com/package-laravel/comment-generer-un-crud-complet-avec-laravel/
+Son GitHub: https://github.com/llvnr
