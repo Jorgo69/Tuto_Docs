@@ -40,3 +40,122 @@ Route::resource('posts', PostController::class);
 
 Article lu Ici: https://captainpackage.com/package-laravel/comment-generer-un-crud-complet-avec-laravel/
 Son GitHub: https://github.com/llvnr
+
+
+
+**Laravel Notification**
+Le lien de l'article: https://captainpackage.com/package-laravel/comment-envoyer-et-customiser-des-notifications-avec-laravel/
+le package sur git: https://github.com/mckenziearts/laravel-notify
+ Une notification peut être ponctuelle, éphémère, stocker et consultable ultérieurement. Dans le cas présent, nous allons juste émettre des notifications éphémère pour les différents cas que nous allons voir en utilisant le package « laravel-notify » : 
+Installation : composer require mckenziearts/laravel-notify
+
+Publiez ensuite le fichier et les assets de configuration :
+php artisan vendor:publish --provider="Mckenziearts\Notify\LaravelNotifyServiceProvider"
+
+Rechargez les nouveaux fichiers via la commande :composer dump-autoload
+
+Configuration :
+Ajoutez le provider dans le fichier « config/app.php » :
+'providers' => [
+    ...
+    Mckenziearts\Notify\LaravelNotifyServiceProvider::class
+    ...
+];
+
+
+Ouvrez ensuite le fichier de configuration de notify dans « config/notify.php » (dans ce fichier, vous pouvez définir le thème dark ou light, le temps d’affichage des notifications, configurer des messages prédéfini) :
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Notify Theme
+    |--------------------------------------------------------------------------
+    |
+    | You can change the theme of notifications by specifying the desired theme.
+    | By default the theme light is activated, but you can change it by
+    | specifying the dark mode. To change theme, update the global variable to `dark`
+    |
+    */
+
+    'theme' => env('NOTIFY_THEME', 'light'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Notification timeout
+    |--------------------------------------------------------------------------
+    |
+    | Defines the number of seconds during which the notification will be visible.
+    |
+    */
+
+    'timeout' => 5000,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Preset Messages
+    |--------------------------------------------------------------------------
+    |
+    | Define any preset messages here that can be reused.
+    | Available model: connect, drake, emotify, smiley, toast
+    |
+    */
+
+    'preset-messages' => [
+        // An example preset 'user updated' Connectify notification.
+        'user-updated' => [
+            'message' => 'The user has been updated successfully.',
+            'type' => 'success',
+            'model' => 'connect',
+            'title' => 'User Updated',
+        ],
+    ],
+
+];
+
+
+Utilisation :
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NOTIFY ME !!!</title>
+    @notifyCss
+</head>
+<body>
+
+    <h1>TEST NOTIFY !</h1>
+    
+    <x-notify::notify />
+    @notifyJs
+
+</body>
+</html>
+
+Nous pouvons maintenant commencer à envoyer des notifications dans « routes/web.php » :
+
+Route::get('/', function () {
+
+    notify()->success('Trop bien laravel notify ! ⚡️'); // MESSAGE SUCCES SIMPLE
+    notify()->success('Trop bien Laravel Notify ! ⚡️', 'Je customise mon titre !'); // MESSAGE SUCCESS AVEC TITRE CUSTOM
+    connectify('success', 'Connection trouvé !', 'Félicitations, vous êtes connecté !'); // MESSAGE EN RAPPORT AVEC LA CONNEXION !
+    drakify('success'); // ON DRAKIFY LES NOTIFICATIONS A SUCCESS.
+    drakify('error'); // ON DRAKIFY LES NOTIFICATIONS EN ERREUR.
+    smilify('success', 'Tu es reconnecté !'); // NOTIFICATION AVEC EMOJIS
+    emotify('success', 'C\'est top !'); // NOTIFICATION AVEC EMOJIS V2
+    notify()->preset('user-updated'); // MESSAGE PROVENANT DU FICHIER DE CONFIGURATION
+    
+    return view('welcome');
+    
+});
+
+**| Pour la gestion des package laravel |**
+**CaptainPackage** est mieux place sur Youtube pour soucis en plus c'est en francais
+
+**| Application Deskop fait avec Php Laravel |**
+le lien du git: https://github.com/cztomczak/phpdesktop/releases/tag/chrome-v57.0-rc
+Le nom du gestionnaire du package: cztomczak/phpdesktop
