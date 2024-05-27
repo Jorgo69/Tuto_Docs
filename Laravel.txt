@@ -155,7 +155,189 @@ Route::get('/', function () {
 
 **| Pour la gestion des package laravel |**
 **CaptainPackage** est mieux place sur Youtube pour soucis en plus c'est en francais
+son site: https://captainpackage.com/
+
+**** Toujours avec CaptainPackage ****
+**| Comment obtenir une base de données de pays avec Laravel ?|**
+Le lien du site: https://captainpackage.com/package-laravel/comment-obtenir-une-base-de-donnees-de-pays-avec-laravel/
+
+ utiliser le package « laravel-world ». Ce package vous fournit une base de données complète :
+
+– Des pays (250 Enregistrements*)
+– Des états (4984 Enregistrements*)
+– Des villes (151249 Enregistrements*)
+– Des fuseaux horaires (428 Enregistrements*)
+– Des devises (250 Enregistrements*)
+
+Installation : composer require nnjeim/world
+
+Publiez tous les fichiers de configuration :
+php artisan vendor:publish --tag=world
+php artisan vendor:publish --tag=world --force
+
+Appliquer les migrations :
+
+php artisan migrate
+Alimenter la base de données via le seeding (Attention : cette tâche peut durer jusqu’à 15 minutes, mais ça a été rapide pour moi dans local) : 
+
+php artisan db:seed --class=WorldSeeder
+
+Utilisation :
+nous allons récupérer la liste des pays (nous utiliserons le fichier routes/web.php pour les tests) :
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Nnjeim\World\World;
+use Nnjeim\World\WorldHelper;
+
+
+Route::get('/', function () {
+
+    $action =  World::countries();
+
+    $countries = $action->data;
+    dump($countries);
+});
+
+Pour ce second cas d’utilisation, nous allons récupérer toutes les villes et les états pour le pays de la France en utilisant un filtre :
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Nnjeim\World\World;
+use Nnjeim\World\WorldHelper;
+
+Route::get('/', function () {
+
+    $actionDeux =  World::countries([
+        'fields' => 'states,cities',
+        'filters' => [
+            'iso2' => 'FR',
+        ]
+    ]);
+
+    $countriesDeux = $actionDeux->data;
+    dump($countriesDeux);
+    
+});
+
+Nous allons récupérer toutes les villes d’un pays :
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Nnjeim\World\World;
+use Nnjeim\World\WorldHelper;
+
+Route::get('/', function () {
+
+    $actionTrois = World::cities([
+        'filters' => [
+            'country_id' => 182,
+        ],
+    ]);
+
+    $cities = $action->data;
+    dump($cities);
+});
+
+Nous allons récupérer les monnaies :
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Nnjeim\World\World;
+use Nnjeim\World\WorldHelper;
+
+Route::get('/', function () {
+
+    $actionQuatre = World::currencies();
+
+    $currencie = $actionQuatre->data;
+    dump($currencie);
+    
+});
+
+Et pour finir les langages disponibles :
+$actionCinq = World::languages();
+
+$languages = $actionCinq->data;
+dump($languages);
+
+Pour chacune de ces données, je pense qu’il est possible de faire des combinaisons de filtre pour extraire de manière intelligence les données que vous souhaitez mettre en évidence ou obtenir. Le package vous offre aussi des endpoints API pour une utilisation autre que monolithique :
+/api/countries
+/api/countries?fields=states,cities&filters[iso2]=FR
+/api/cities?filters[country_code]=RO
+/api/states
+/api/timezones
+/api/currencies
+/api/languages
+
+
+
+
 
 **| Application Deskop fait avec Php Laravel |**
 le lien du git: https://github.com/cztomczak/phpdesktop/releases/tag/chrome-v57.0-rc
 Le nom du gestionnaire du package: cztomczak/phpdesktop
+
+
+
+
+
+# Formattage de l'heure en fonction de la langue francaise
+
+Pour afficher la date en français dans Laravel, vous pouvez utiliser la localisation (localization) de PHP et Carbon, qui est une extension de la bibliothèque DateTime de PHP.
+
+Étapes pour afficher la date en français :
+Configurer la localisation dans Laravel :
+Laravel utilise Carbon pour manipuler les dates. Vous devez donc configurer la localisation de Carbon pour qu'il affiche les dates en français.
+
+Utiliser Carbon avec la localisation française :
+Utilisez Carbon pour formater la date et définir la langue sur le français.
+
+Exemple :
+1. Configurer la localisation
+Assurez-vous que l'application est configurée pour utiliser le français. Dans le fichier de configuration config/app.php, changez la ligne de langue par défaut :
+
+php
+Copier le code
+'locale' => 'fr',
+2. Utiliser Carbon pour formater la date
+Dans votre vue Blade, vous pouvez utiliser Carbon pour formater la date en français :
+
+blade
+Copier le code
+<?php
+use Carbon\Carbon;
+Carbon::setLocale('fr');
+?>
+
+{{ \Carbon\Carbon::parse($carnet->created_at)->translatedFormat('D d F Y') }}
+Explication :
+Carbon::setLocale('fr') : Définit la langue de Carbon sur le français.
+\Carbon\Carbon::parse($carnet->created_at) : Analyse la date created_at du modèle carnet.
+translatedFormat('D d F Y') : Formate la date en utilisant le format jour de la semaine jour mois année en français.
+Exemple complet dans une vue Blade :
+blade
+Copier le code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Affichage de la date en français</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Date en français</h1>
+    <p>
+        <?php
+        use Carbon\Carbon;
+        Carbon::setLocale('fr');
+        ?>
+        {{ \Carbon\Carbon::parse($carnet->created_at)->translatedFormat('D d F Y') }}
+    </p>
+</div>
+</body>
+</html>
+Résumé :
+Assurez-vous que la localisation de l'application est configurée pour le français dans config/app.php.
+Utilisez Carbon avec la méthode translatedFormat pour afficher la date dans le format souhaité en français.
+Avec ces étapes, la date affichée devrait être en français, y compris le jour de la semaine et le mois.

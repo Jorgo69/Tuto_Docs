@@ -1,0 +1,8 @@
+Pour le traitement de texte ici Summary 
+
+Git : https://github.com/summernote/summernote/
+
+
+Le lien pour la documentation
+
+https://summernote.org/getting-started/#php

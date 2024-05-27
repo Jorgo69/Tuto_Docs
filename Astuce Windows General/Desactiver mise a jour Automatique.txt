@@ -1,0 +1,12 @@
+L'ÉDITEUR DE STRATÉGIE
+Cette solution a l'avantage non négligeable de permettre de totalement bloquer les mises à jour automatiques et ce, jusqu'à ce que vous décidiez de les installer par vous-mêmes. Il est par ailleurs également possible de configurer la date à laquelle vous souhaitez passer à la version supérieure. Voici comme vous y prendre :
+
+Ouvrez le menu Démarrer >
+
+	Rechercher Modifier la stratégie de groupe locale ou tapez gpedit.msc >
+
+		Rendez-vous dans Configuration ordinateur > Modèles d'administration > Composants Windows > Windows Update >
+
+			Double-cliquez sur Configuration du service Mises à jour automatiques
+			Dans la fenêtre qui s'ouvre, cochez Désactivé
+			Cliquez sur Appliquer puis sur OK

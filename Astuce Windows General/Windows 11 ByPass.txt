@@ -1,0 +1,75 @@
+Comment faire pour installer Windows 11 sur un PC non pris en charge : 3 méthodes
+
+URL du site : https://geekflare.com/fr/install-windows-11-on-unsupported-pcs/
+
+By Karrar Haider
+3 méthodes de travail pour installer Windows 11 sur les PC non pris en charge
+Mise à niveau de votre PC vers le lateère version de WindowC'est en effet la bonne décision pour suivre le rythme.atest avance, mais contrairement à prevversions géniales de Windows, Windowl'article 11 est un bit snob.
+
+j'ai réussi à installer Windows 10 sur des PC qui pouvaient à peine le démarrer. Cependant, Windows 11 litresally a refusé d'installer sur mon PC Core i7 de 7e génération. Autant un « je ne suis plus assez bien pour toi ?! » À ce moment-là, résoudre le problème était aussi simple que d’activer certaines fonctionnalités.
+
+Le véritable défi pour moi était d'installer Windows 11 sur des PC beaucoup plus anciens, y compris un PC de 2e génération avec un BIOS hérité. Heureusement, après une semaine d'expérimentation et de formatage des données sur 2 de mes PC deux fois (involontairementally), mes 3 PC fonctionnent actuellement sur Windows 11.
+
+Aujourd'hui, je vais partager toutes les méthodes que j'ai utilisées et qui ont été installées avec succès Windows 11 sur tous mes PC, nouveaux et anciens. Ainsi, ces méthodes fonctionneront si vous possédez un PC pas si ancien qui a été éteint par Windows 11 ou vous souhaitez forcer l'installation Windows 11 sur un incendieally vieux PC juste pour vérifier ceux-là nouvelles fonctionnalités intéressantes.
+
+Et rassurez-vous, je n'ai sélectionné que les méthodes qui n'auront aucun effet nocif. impact sur votre PC, comme perdre des données.
+
+Comprendre les limitations des PC non pris en charge
+Même si Windows 11 peut fonctionner sur la plupart des PC non pris en charge, cela ne signifie pas qu'il fonctionnera parfaitement. Selon le PC, certaines fonctionnalités peuvent ne pas fonctionner correctement ou Windows peuvent se corrompre ou mal fonctionner. Microsoft déconseille également installer Windows 11 sur les appareils non pris en charge, et il n'y a aucune garantie que ces appareils recevront toutes les futures mises à jour.ates.
+
+Gardez donc à l'esprit ces conséquences avant d'installer Windows 11 sur votre PC non pris en charge, car personne ne sera responsable des dommages causés à vos données ou à votre appareil.
+
+De mon expérience personnelle, Windows 11 fonctionne parfaitement sur tous mes PC depuis les quelques semaines où je l'utilise. Cependant, je ne conserve aucune donnée critique sur les appareils non pris en charge car je ne fais pas confiance au sécurité et la stabilité.
+
+Activer TPM 2.0 et le démarrage sécurisé
+Avant de vous expliquer les solutions de contournement à installer Windows 11 sur les appareils non pris en charge, il est bon de vous assurer que votre PC n'est pas pris en charge. La plupart des PC les plus récents qui voient une erreur non prise en charge sont habituels.ally à cause de la disparition TPM 2.0 et prise en charge du démarrage sécurisé.
+
+Dans la plupart des cas, ces deux fonctionnalités sont disponibles sur le PC mais sont disabled par défaut. Alors vous tous ce que vous devez faire est de les activer, puis d'essayer d'installer Windows 11.
+
+Unfortunately, je ne peux pas fournir d'instructions précises pour activer ces deux options car elles sont activées dans le BIOS, qui diffère d'un fabricant à l'autre. Cependant, je vais quand même fournir des instructions qui devraient fonctionner pour la plupart des PC.
+
+Tout d'abord, vous devez accéder au BIOS, ce que vous pouvez faire en répétantateen appuyant doucement sur F10, F2, F12, F1ou DEL pendant que le PC démarre. La touche sur laquelle vous devez appuyer dépend du fabricant du PC. Par exemple, les ordinateurs HP utilisent le F12 clé.
+
+Une fois à l'intérieur, vous trouverez à la fois TPM 2.0 et Secure Boot sous le Sécurité menu. Sur certains PC, l'option Secure Boot peut se trouver sous le botte menu. Assurez-vous de sélectionner "Enregistrer les modifications et quitter" lors de la fermeture du BIOS pour appliquer les modifications.
+
+Télécharger Windowfichier ISO s11
+Les méthodes suivantes nécessitent un Windows 11 fichier ISO pour fonctionner. Si vous n'avez pas essayé d'installer Windowj'ai encore 11 ans ou j'ai createun disque bootable en utilisant le Windows 11 médias creation outil au lieu d'utiliser l'ISO, vous devez télécharger Windows 11 ISO pour suivre les méthodes ci-dessous.
+
+Vous pouvez facilement download WindowFichier ISO s 11 sur le site Web de Microsoft. Faites simplement défiler vers le bas et cliquez sur Télécharger sous le Télécharger Windows 11 Image disque (ISO) section. Vous devrez sélectionner votre Windows ensuite pour obtenir le lien pour le télécharger.
+
+#1 Méthode: Modifier le registre pour contourner la vérification des exigences
+Si cela ne vous dérange pas de déconner dans le Windows Registry, c'est probablement la solution la plus simple qui ne nécessitera pas de third-outil de fête. En fonction de votre PC, vous pouvez prevent Windows 11 de vérifier des exigences spécifiques en créant une entrée dans le registre.
+
+Vous devez effectuer différentes entrées en fonction des fonctionnalités déjà prises en charge par votre PC. Je vais les expliquer ci-dessous :
+
+Mise en garde: Faire une mauvaise entrée dans le Registre peut endommager votre PC, notamment Windows la corruption ou la perte de données. Donc, avant d'effectuer les modifications ci-dessous, soit manually sauvegarde du registre ou utiliser un nettoyeur de registre automatiqueally sauvegardez-le et restaurez-le.
+
+Contourner le TPM 2.0 et la vérification des exigences CPU
+Si votre PC prend en charge TPM 1.2 mais n'a pas besoin de CPU ou de prise en charge TPM 2.0, vous devez effectuer la modification mentionnée ci-dessous dans le Registre :
+
+Ouvrez le registre en recherchant dans le Windows rechercher ou utiliser un commande run en appuyant WindowTouches s+R et saisie regedit dans la boîte de dialogue Exécuter.
+
+commande Exécuter regedit
+Ici, déplacez-vous à cet endroit HKEY_LOCAL_MACHINE > SYSTÈME > Configuration > MoSetup. Vous pouvez également copier/coller l'emplacement mentionné ci-dessous dans la barre de recherche en haut de l'interface du Registre pour accéder directement à cet emplacement.
+
+\HKEY_LOCAL_MACHINE\SYSTEM\Setup\MoSetup
+
+Lorsque le dossier MoSetup est sélectionné, cliquez avec le bouton droit sur l'espace blanc vide dans le panneau de droite et sélectionnez DWORD (32 bits) du Nouveauté option.
+
+Create Valeur DWORD
+Une nouvelle entrée sera crééeated. Nommer l'entrée Autoriser les mises à niveau avec TPM ou CPU non pris en charge puis double-cliquez dessus et sélectionnez sa valeur comme 1.
+
+Ignorer le piratage du registre des exigences du processeur TPM
+Maintenant, allez-y et installez Windows 11 à l'aide d'une clé USB amorçable ou d'un ISO monté. Les limitations du TPM 2.0 et du CPU ne dérangeront pas.
+
+Contourner le TPM ou la vérification de démarrage sécurisé
+Si votre PC ne prend pas en charge TPM et Secure Boot, vous devez créerate deux inscriptions au Registre. Voyons comment procéder :
+
+Dans le Registre, accédez à l'emplacement HKEY_LOCAL_MACHINE > SYSTÈME > Configuration. Vous pouvez également copier/coller le chemin mentionné ci-dessous dans la barre de recherche du Registre :
+
+\HKEY_LOCAL_MACHINE\SYSTEM\Setup
+
+Faites un clic droit sur installation et sélectionnez Nouveau> Clé créerate une nouvelle entrée en dessous et nommez cette nouvelle entrée LabConfig.
+
+Create Clé de Registre
+Lorsque LabConfig est sélectionné, cliquez avec le bouton droit sur un espace vide dans le panneau de droite et sélectionnez DWORD (32 bits) du Nouveauté option.
